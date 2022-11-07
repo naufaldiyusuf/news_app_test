@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:news_app_test/screen/tab_bar/national_news.dart';
+import 'package:news_app_test/screen/tab_bar/news_list_screen.dart';
 
 import '../controller/controller.dart';
 
@@ -29,6 +29,7 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text("Home"),
+        automaticallyImplyLeading: false,
         bottom: TabBar(
           controller: controller,
           tabs: [

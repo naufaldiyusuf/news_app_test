@@ -4,7 +4,7 @@ import 'package:news_app_test/helper/constant.dart';
 import '../model/models.dart';
 
 class NewsApiService {
-  static Future<NewsApiModel> getNews(String country, String category) async {
+  static Future<NewsApiModel> getNews(String country, String category, int pageNow, String keyWord) async {
     try {
       String baseUrl = Constant.baseUrl;
       String apiKey = Constant.apiKey;
@@ -15,7 +15,10 @@ class NewsApiService {
         baseUrl,
         queryParameters: {
           "country": country,
-          "category": category
+          "category": category,
+          "page": pageNow,
+          "pageSize": 10,
+          "q": keyWord
         },
         options: Options(
           headers: {

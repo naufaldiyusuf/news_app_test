@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../controller/controller.dart';
 
 Widget customListTile(String title, String image, String source, BuildContext context) {
   return Container(
@@ -58,6 +61,44 @@ Widget customListTile(String title, String image, String source, BuildContext co
           ),
         )
       ],
+    ),
+  );
+}
+
+Widget formSearchNewsList(
+    TextEditingController textController,
+    Controller getController,
+    String country,
+    String category,
+    Timer? debounce
+    ) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 16, right: 18, left: 18),
+    child: SizedBox(
+      height: 47,
+      child: TextFormField(
+        textInputAction: TextInputAction.search,
+        controller: textController,
+        onChanged: (value) {
+          if (debounce?.isActive ?? false) debounce?.cancel();
+          debounce = Timer(Duration(milliseconds: 500), () {
+            getController.getNews(country, category, value);
+          });
+        },
+        decoration: InputDecoration(
+          //hintTextDirection: ,
+
+          contentPadding: EdgeInsets.all(10.0),
+          suffixIcon: Icon(Icons.search),
+          hintText: "Search your keyword here",
+          fillColor: const Color(0xffEBECEC),
+          errorStyle: const TextStyle(color: Colors.red),
+          filled: true,
+          border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(8.0)),
+        ),
+      ),
     ),
   );
 }
