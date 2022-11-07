@@ -8,24 +8,28 @@ class Controller extends GetxController {
   List<NewsApiArticles> articles = <NewsApiArticles>[].obs;
   RxBool loading = true.obs;
   RxBool loadingNext = false.obs;
+  RxBool error = false.obs;
   RxBool nextPageProses = false.obs;
   RxInt pageNow = 1.obs;
   RxString keyWordSave = "".obs;
 
   getNews(String country, String category, String keyWord) async {
     loading.value = true;
+    error.value = false;
     articles.clear();
     keyWordSave.value = keyWord;
     pageNow.value = 1;
     update();
     await NewsApiService.getNews(country, category, pageNow.toInt(), keyWord).then((value) {
+      loading.value = false;
       if (value.status == "ok") {
-        loading.value = false;
         pageNow.value += 1;
         value.articles.forEach((e) {
           articles.add(e);
         });
         update();
+      } else {
+        error.value = true;
       }
     });
   }

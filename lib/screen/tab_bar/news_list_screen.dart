@@ -12,9 +12,8 @@ import '../../model/models.dart';
 class NewsListScreen extends StatefulWidget {
   final String country;
   final String category;
-  final Controller controller;
 
-  NewsListScreen(this.country, this.category, this.controller);
+  NewsListScreen(this.country, this.category);
 
   @override
   State<NewsListScreen> createState() => _NewsListScreenState();
@@ -53,12 +52,19 @@ class _NewsListScreenState extends State<NewsListScreen> {
           children: [
             formSearchNewsList(textController, getController, widget.country, widget.category, debounce),
             Container(
+              alignment: Alignment.center,
               height: MediaQuery.of(context).size.height * 0.7,
-              child: ListView(
+              child: getController.error.isTrue
+                  ? dataEmpty()
+                  :
+              ( getController.articles.isEmpty
+                  ? dataEmpty()
+                  : ListView(
                   controller: scrollController,
-                  children: widget.controller.articles.map((e) {
+                  children: getController.articles.map((e) {
                     return customListTile(e.title ?? "", e.urlImage ?? "", e.sourceName, context);
-                  }).toList()),
+                  }).toList())
+              ),
             ),
             getController.loadingNext.isTrue
                 ? Center(

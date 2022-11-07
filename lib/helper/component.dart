@@ -102,3 +102,23 @@ Widget formSearchNewsList(
     ),
   );
 }
+
+Widget dataEmpty() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(Icons.newspaper, color: Colors.black, size: 150,),
+      Text("Tidak ada data", style: TextStyle(color: Colors.black, fontSize: 30))
+    ],
+  );
+}
+
+Widget dataError() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(Icons.error, color: Colors.red, size: 150,),
+      Text("Terjadi kesalahan", style: TextStyle(color: Colors.black, fontSize: 30))
+    ],
+  );
+}

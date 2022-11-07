@@ -43,10 +43,10 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
       body: TabBarView(
         controller: controller,
         children: [
-          NewsListScreen("id", "", getController),
-          NewsListScreen("us", "", getController),
-          NewsListScreen("id", "business", getController),
-          NewsListScreen("id", "technology", getController)
+          NewsListScreen("id", ""),
+          NewsListScreen("us", ""),
+          NewsListScreen("id", "business"),
+          NewsListScreen("id", "technology")
         ],
       ),
     );
