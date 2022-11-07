@@ -2,6 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
+
+import 'tab_bar_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -24,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // });
 
     _timer = Timer(Duration(seconds: 2), () {
-
+      Get.to(() => TabBarPage());
     });
 
     super.initState();
@@ -42,15 +46,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: SizedBox(
-          height: 86,
-          width: 229,
-          child: Column(
-            children: [
-              Icon(Icons.newspaper, color: Colors.white),
-              Text("News Feed")
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.newspaper, color: Colors.white, size: 150,),
+            Text("News Feed", style: TextStyle(color: Colors.white, fontSize: 30))
+          ],
         ),
       ),
     );
