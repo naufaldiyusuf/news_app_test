@@ -68,7 +68,11 @@ class _NewsListScreenState extends State<NewsListScreen> {
             ),
             getController.loadingNext.isTrue
                 ? Center(
-              child: CircularProgressIndicator(),
+              child: Container(
+                height: MediaQuery.of(context).size.width * 0.05,
+                width: MediaQuery.of(context).size.width * 0.05,
+                child: CircularProgressIndicator(),
+              ),
             )
                 : Container()
           ],
