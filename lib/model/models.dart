@@ -28,13 +28,15 @@ class NewsApiArticles {
   String? description;
   String? urlImage;
   String sourceName = "";
+  String? content;
 
   NewsApiArticles({
     this.author,
     this.title,
     this.description,
     this.urlImage,
-    required this.sourceName
+    required this.sourceName,
+    this.content
   });
 
   NewsApiArticles.fromJson(Map<String, dynamic> json) {
@@ -43,5 +45,6 @@ class NewsApiArticles {
     description = json['description'];
     urlImage = json['urlToImage'];
     sourceName = json['source']['name'];
+    content = json['content'];
   }
 }

@@ -62,7 +62,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
                   : ListView(
                   controller: scrollController,
                   children: getController.articles.map((e) {
-                    return customListTile(e.title ?? "", e.urlImage ?? "", e.sourceName, context);
+                    return customListTile(e.title ?? "", e.urlImage ?? "", e.sourceName, context, e.description ?? "", e.content ?? "");
                   }).toList())
               ),
             ),
